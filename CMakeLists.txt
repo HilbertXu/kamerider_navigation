@@ -125,6 +125,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -156,6 +157,10 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+add_executable(turn_robot_server src/turn_robot_server.cpp)
+target_link_libraries(turn_robot_server ${catkin_LIBRARIES})
+add_dependencies(turn_robot_server ${navigation_EXPORTED_TARGETS})
+
 
 #############
 ## Install ##
