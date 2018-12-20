@@ -1,0 +1,3 @@
+string candidate_location
+string candidate_target
+string candidate_action
