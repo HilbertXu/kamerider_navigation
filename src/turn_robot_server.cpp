@@ -46,7 +46,7 @@ public:
     //将会由客户端传来一个目标转动角度
     void executeCallback (const navigation::turn_robotGoalConstPtr& goal)
     {
-        ROS_INFO("%s: Executing, setting goal twist angle %i", action_name_.c_str(), goal->goal_angle);
+        ROS_INFO("%s: Executing, setting goal twist angle %f", action_name_.c_str(), goal->goal_angle);
         bool success = true;
         double rate = 50;
         ros::Rate loopRate (rate);
@@ -148,7 +148,7 @@ public:
 
 int main(int argc, char** argv)
 {
-    ros::init (argc, argv, "turn_robot");
+    ros::init (argc, argv, "turn_robot_server");
     turn_robot_action turn_robot("turn_robot");
     ros::spin();
 

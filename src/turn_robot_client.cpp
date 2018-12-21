@@ -16,7 +16,7 @@ typedef actionlib::SimpleActionClient<navigation::turn_robotAction> Client;
 void doneCallback (const actionlib::SimpleClientGoalState& state,
                    const navigation::turn_robotResultConstPtr& result)
 {
-    ROS_INFO ("I have turned %s degree, waiting for your further command", result->final_angle);
+    ROS_INFO ("I have turned %f degree, waiting for your further command", result->final_angle);
 }
 
 void activeCallback ()
@@ -26,13 +26,13 @@ void activeCallback ()
 
 void feedbackCallback (const navigation::turn_robotFeedbackConstPtr& feedback)
 {
-    ROS_INFO ("current angle is %s", feedback->current_angle);
+    ROS_INFO ("current angle is %f", feedback->current_angle);
 }
 
 int main (int argc, char** argv)
 {
     ROS_INFO ("Turn robot Client online");
-    ros::init (argc, argv, "turn_robot_test");
+    ros::init (argc, argv, "turn_robot_client");
 
     Client client("turn_robot", true);
     ROS_INFO ("Waiting for action server to start");
