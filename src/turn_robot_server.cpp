@@ -148,8 +148,8 @@ public:
 
 int main(int argc, char** argv)
 {
-    ros::init (argc, argv, "turn_robot_server");
-    turn_robot_action turn_robot("turn_robot_server");
+    ros::init (argc, argv, "turn_robot");
+    turn_robot_action turn_robot("turn_robot");
     ros::spin();
 
     return 0;

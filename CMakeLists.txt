@@ -164,7 +164,7 @@ add_executable(gpsr_navigation src/gpsr_navigation.cpp)
 target_link_libraries(gpsr_navigation ${catkin_LIBRARIES})
 add_dependencies(gpsr_navigation ${navigation_EXPORTED_TARGETS})
 
-add_executable(turn_robot_client src/turn_robot_server.cpp)
+add_executable(turn_robot_client src/turn_robot_client.cpp)
 target_link_libraries(turn_robot_client ${catkin_LIBRARIES})
 add_dependencies(turn_robot_client ${navigation_EXPORTED_TARGETS})
 

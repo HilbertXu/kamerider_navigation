@@ -4,7 +4,7 @@ test code for turn robot with action
 #include <ros/ros.h>
 #include <string.h>
 #include <cmath>
-#include <actionlib/server/simple_action_client.h>
+#include <actionlib/client/simple_action_client.h>
 #include <std_msgs/String.h>
 #include <geometry_msgs/Twist.h>
 #include <navigation/turn_robotAction.h>
@@ -13,7 +13,7 @@ test code for turn robot with action
 
 typedef actionlib::SimpleActionClient<navigation::turn_robotAction> Client;
 
-void doneCallback (const actionlib::SimpleActionClient& state,
+void doneCallback (const actionlib::SimpleClientGoalState& state,
                    const navigation::turn_robotResultConstPtr& result)
 {
     ROS_INFO ("I have turned %s degree, waiting for your further command", result->final_angle);
@@ -32,14 +32,14 @@ void feedbackCallback (const navigation::turn_robotFeedbackConstPtr& feedback)
 int main (int argc, char** argv)
 {
     ROS_INFO ("Turn robot Client online");
-    ros::init (argc, argv, "turn_robot_client");
+    ros::init (argc, argv, "turn_robot_test");
 
-    Client client("turn_robot_client", true);
+    Client client("turn_robot", true);
     ROS_INFO ("Waiting for action server to start");
     client.waitForServer();
     ROS_INFO ("Action server actived, start sending goal");
 
-    navigation::turn_robot goal;
+    navigation::turn_robotGoal goal;
     goal.goal_angle = PI/2;
     client.sendGoal (goal, &doneCallback, &activeCallback, &feedbackCallback);
     ros::spin();
