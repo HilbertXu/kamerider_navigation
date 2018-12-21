@@ -1,5 +1,6 @@
 <launch>
-    <include file=$(find turtlebot_bringup)/launch/minimal.launch/>
+    <include file="$(find turtlebot_bringup)/launch/minimal.launch">
+    </include>
     <group ns="client">
         <node name="turn_robot_client" pkg="navigation" type="turn_robot_client"/>
     </group>
