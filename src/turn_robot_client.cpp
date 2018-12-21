@@ -32,6 +32,7 @@ void feedbackCallback (const navigation::turn_robotFeedbackConstPtr& feedback)
 int main (int argc, char** argv)
 {
     ROS_INFO ("Turn robot Client online");
+    ros::init (argc, argv, "turn_robot_client");
 
     Client client("turn_robot_client", true);
     ROS_INFO ("Waiting for action server to start");
