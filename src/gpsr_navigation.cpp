@@ -37,10 +37,13 @@ geometry_msgs::Pose goal_pose;
 
 //定义不同房间内的导航点
 //定义不同房间位置的坐标点
-geometry_msgs::Pose living_room;
+geometry_msgs::Pose living_room_ob1;
+geometry_msgs::Pose living_room_ob2;
+geometry_msgs::Pose living_room_GCP;
+geometry_msgs::Pose entrance;
+
 geometry_msgs::Pose kitchen;
 geometry_msgs::Pose bar_table;
-geometry_msgs::Pose entrance;
 geometry_msgs::Pose balcony;
 geometry_msgs::Pose start;
 geometry_msgs::Pose exitus;
@@ -57,13 +60,13 @@ void initPlace ()
 //--------------------------------------
 {
     //1
-    start.position.x =  12.8627;
-    start.position.y = 1.14987;
+    start.position.x =  0;
+    start.position.y = 0;
     start.position.z = 0;
     start.orientation.x = 0;
     start.orientation.y = 0;
-    start.orientation.z = 0.662806;
-    start.orientation.w = 0.748791;
+    start.orientation.z = 0;
+    start.orientation.w = 0;
 
     
     exitus.position.x = 0.0654283;
@@ -74,22 +77,42 @@ void initPlace ()
     exitus.orientation.z = 0.859506;
     exitus.orientation.w = 0.511125;
     //2
-    living_room.position.x = 8.57897;
-    living_room.position.y = 3.25528;
-    living_room.position.z = 0;
-    living_room.orientation.x = 0;
-    living_room.orientation.y = 0;
-    living_room.orientation.z =  -0.0857846;
-    living_room.orientation.w =  0.996314;
+    living_room_ob1.position.x = 2.75546;
+    living_room_ob1.position.y = -5.33159;
+    living_room_ob1.position.z = 0;
+    living_room_ob1.orientation.x = 0;
+    living_room_ob1.orientation.y = 0;
+    living_room_ob1.orientation.z = -0.718957;
+    living_room_ob1.orientation.w = 0.695055;
+    
     //3
-    kitchen.position.x = 11.9463;
-    kitchen.position.y = 2.81379;
-    kitchen.position.z = 0;
-    kitchen.orientation.x = 0;
-    kitchen.orientation.y = 0;
-    kitchen.orientation.z = -0.113013;
-    kitchen.orientation.w = 0.993593;
+    living_room_ob2.position.x = 1.82056;
+    living_room_ob2.position.y = -3.54136;
+    living_room_ob2.position.z = 0;
+    living_room_ob2.orientation.x = 0;
+    living_room_ob2.orientation.y = 0;
+    living_room_ob2.orientation.z = -0.693987;
+    living_room_ob2.orientation.w = 0.719987;
 
+    //4
+    living_room_GCP.position.x = 0.947594;
+    living_room_GCP.position.y = -3.44213;
+    living_room_GCP.position.z = 0;
+    living_room_GCP.orientation.x = 0;
+    living_room_GCP.orientation.y = 0;
+    living_room_GCP.orientation.z =  0.99419;
+    living_room_GCP.orientation.w =  0.107641;
+
+
+    //5
+    entrance.position.x = 0.540956;
+    entrance.position.y = -0.548329;
+    entrance.position.z = 0;
+    entrance.orientation.x = 0;
+    entrance.orientation.y = 0;
+    entrance.orientation.z = -0.0611887;
+    entrance.orientation.w = 0.998126;
+    
     bar_table.position.x = 8.51342;
     bar_table.position.y = -6.43248;
     bar_table.position.z = 0;
@@ -97,15 +120,17 @@ void initPlace ()
     bar_table.orientation.y = 0;
     bar_table.orientation.z = 0.277456;
     bar_table.orientation.w = 0.960738;
-    //4
-    entrance.position.x = 10.3498;
-    entrance.position.y = 4.37952;
-    entrance.position.z = 0;
-    entrance.orientation.x = 0;
-    entrance.orientation.y = 0;
-    entrance.orientation.z = 0.735302;
-    entrance.orientation.w = 0.67774;
-
+    
+    //6
+    kitchen.position.x = 11.9463;
+    kitchen.position.y = 2.81379;
+    kitchen.position.z = 0;
+    kitchen.orientation.x = 0;
+    kitchen.orientation.y = 0;
+    kitchen.orientation.z = -0.113013;
+    kitchen.orientation.w = 0.993593;
+  
+    //7
     balcony.position.x = 2.98617397856;
     balcony.position.y = -1.49467780406;
     balcony.position.z = 0;
@@ -125,7 +150,7 @@ void speechCallback (const std_msgs::String::ConstPtr& msg)
     nav_flag = msg->data;
     if (nav_flag == "living_room")
     {
-        goal_pose = living_room;
+        goal_pose = living_room_ob1;
         ifNavigate = true;
     }
     else if (nav_flag == "kitchen")
