@@ -36,12 +36,9 @@
         手柄操作设置如下
   -->
       <!-- 速度平滑 -->
-    <include file="$(find turtlebot_teleop)/launch/keyboard_teleop.launch" />   
-
-    
-
+    <include file="$(find turtlebot_teleop)/launch/keyboard_teleop.launch" />  
 
   <!-- 加载C++节点 -->
-  <node pkg="navigation_test" type="get_pose" name="get_pose" launch-prefix="xterm -e"/> <!-- -->
+  <node pkg="navigation" type="get_pose" name="get_pose" launch-prefix="xterm -e"/> <!-- -->
 
 </launch>
