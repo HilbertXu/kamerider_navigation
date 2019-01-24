@@ -1,5 +1,11 @@
 <launch>
     <include file="$(find turtlebot_bringup)/launch/minimal.launch">
+    <!-- 加载move_base -->
+    <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
+
+    <!-- 3D visualization -->
+    <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+ 
     </include>
     <group ns="client">
         <node name="turn_robot_client" pkg="navigation" type="turn_robot_client"/>
