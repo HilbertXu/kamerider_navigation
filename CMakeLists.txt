@@ -170,11 +170,11 @@ add_dependencies(turn_robot_client ${kamerider_navigation_EXPORTED_TARGETS})
 
 add_executable(navigation_demo src/navigation_demo.cpp)
 target_link_libraries(navigation_demo ${catkin_LIBRARIES})
-add_dependencies(navigation_demo ${navigation_EXPORTED_TARGETS})
+add_dependencies(navigation_demo ${kamerider_navigation_EXPORTED_TARGETS})
 
 add_executable(get_pose src/get_pose.cpp)
 target_link_libraries(get_pose ${catkin_LIBRARIES})
-add_dependencies(get_pose ${navigation_EXPORTED_TARGETS})
+add_dependencies(get_pose ${kamerider_navigation_EXPORTED_TARGETS})
 
 
 #############
