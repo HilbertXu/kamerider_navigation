@@ -4,7 +4,7 @@
 #include <actionlib/server/simple_action_server.h>
 #include <std_msgs/String.h>
 #include <geometry_msgs/Twist.h>
-#include <navigation/turn_robotAction.h>
+#include <kamerider_navigation/turn_robotAction.h>
 
 #define PI 3.1415926
 
@@ -13,7 +13,7 @@ class turn_robot_action
 protected:
 
     ros::NodeHandle nh_;
-    actionlib::SimpleActionServer<navigation::turn_robotAction> as_;
+    actionlib::SimpleActionServer<kamerider_navigation::turn_robotAction> as_;
     //必须先声明NodeHandle 否则会有奇奇怪怪的错误
     //by ROS WIKI
 
@@ -27,8 +27,8 @@ protected:
     ros::Publisher twist_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1);
 
     //声明用来发布 feedback/result 的消息
-    navigation::turn_robotFeedback feedback_;
-    navigation::turn_robotResult result_;
+    kamerider_navigation::turn_robotFeedback feedback_;
+    kamerider_navigation::turn_robotResult result_;
 
 public:
     
@@ -44,7 +44,7 @@ public:
 
     //执行回调函数，在收到来自客户端的请求的时候执行操作
     //将会由客户端传来一个目标转动角度
-    void executeCallback (const navigation::turn_robotGoalConstPtr& goal)
+    void executeCallback (const kamerider_navigation::turn_robotGoalConstPtr& goal)
     {
         ROS_INFO("%s: Executing, setting goal twist angle %f", action_name_.c_str(), goal->goal_angle);
         bool success = true;

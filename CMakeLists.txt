@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(navigation)
+project(kamerider_navigation)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -158,15 +158,15 @@ include_directories(
 # )
 add_executable(turn_robot_server src/turn_robot_server.cpp)
 target_link_libraries(turn_robot_server ${catkin_LIBRARIES})
-add_dependencies(turn_robot_server ${navigation_EXPORTED_TARGETS})
+add_dependencies(turn_robot_server ${kamerider_navigation_EXPORTED_TARGETS})
 
 add_executable(gpsr_navigation src/gpsr_navigation.cpp)
 target_link_libraries(gpsr_navigation ${catkin_LIBRARIES})
-add_dependencies(gpsr_navigation ${navigation_EXPORTED_TARGETS})
+add_dependencies(gpsr_navigation ${kamerider_navigation_EXPORTED_TARGETS})
 
 add_executable(turn_robot_client src/turn_robot_client.cpp)
 target_link_libraries(turn_robot_client ${catkin_LIBRARIES})
-add_dependencies(turn_robot_client ${navigation_EXPORTED_TARGETS})
+add_dependencies(turn_robot_client ${kamerider_navigation_EXPORTED_TARGETS})
 
 
 #############
