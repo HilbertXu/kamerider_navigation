@@ -24,7 +24,7 @@ protected:
     geometry_msgs::Twist vel;
 
     //发布消息控制机器人转动
-    ros::Publisher twist_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1);
+    ros::Publisher twist_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel_mux/input/navi", 1);
 
     //声明用来发布 feedback/result 的消息
     kamerider_navigation::turn_robotFeedback feedback_;
@@ -126,7 +126,7 @@ public:
                 vel.linear.z = 0;
                 vel.angular.x = 0;
                 vel.angular.y = 0;
-                vel.angular.z = 0;
+                vel.angular.z = angular_speed;
 
                 twist_pub_.publish (vel);
                 feedback_.current_angle = i*angular_speed;
