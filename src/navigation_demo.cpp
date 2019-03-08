@@ -22,7 +22,8 @@ using namespace std;
 //定义的全局变量
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient; //简化类型书写为MoveBaseClient
 
-bool go = false;
+bool go_to_pos1 = false;
+bool go_to_pos2 = false;
 geometry_msgs::Pose pos1;
 geometry_msgs::Pose pos2;
 geometry_msgs::Pose goal_pose;//目标位置
@@ -35,21 +36,21 @@ ros::Publisher nav_pub;
 
 void initpose()
 {
-    pos1.position.x = 1.76788;
-    pos1.position.y = -4.81924;
+    pos1.position.x = 0.540956;
+    pos1.position.y = -0.548329;
     pos1.position.z = 0;
     pos1.orientation.x = 0;
     pos1.orientation.y = 0;
-    pos1.orientation.z = -0.849565;
-    pos1.orientation.w = 0.527483;
+    pos1.orientation.z = -0.0611887;
+    pos1.orientation.w = 0.998126;
     
-    pos2.position.x = 0.92691;
-    pos2.position.y = -0.912548;
+    pos2.position.x = 0.947594;
+    pos2.position.y = -3.44213;
     pos2.position.z = 0;
     pos2.orientation.x = 0;
     pos2.orientation.y = 0;
-    pos2.orientation.z = 0.989422;
-    pos2.orientation.w = 0.145068;
+    pos2.orientation.z = 0.99419;
+    pos2.orientation.w = 0.107641;
 }
 
 /*
@@ -63,12 +64,14 @@ void spCallback(const std_msgs::String::ConstPtr& msg)
 	if(msg->data == "go_to_pos1")
 	{
 		goal_pose = pos1;
-		go = true;
+		go_to_pos1 = true;
 	}
 
 	if(msg->data == "go_to_pos2")
 	{
 		goal_pose = pos2;
+		go_to_pos1 = false;
+		go_to_pos2 = true;
 	}
 }
 
@@ -87,7 +90,7 @@ int main(int argc, char **argv)
 
 	while(ros::ok())
 	{
-		if(go)
+		if(go_to_pos1)
 		{
             ROS_INFO("****************************************");
             //goal_pose = pos1;
@@ -110,13 +113,14 @@ int main(int argc, char **argv)
 
 				cout<<"Yes! The robot has moved to the goal_pos1"<<endl;
 				std_msgs::String flag;
-				flag.data = "pos1_get";
+				flag.data = "arrive_at_pos1";
 				nav_pub.publish(flag);
-				go = false;
+				go_to_pos1 = false;
+				go_to_pos2 = true;
 				cout<<"I will go to the goal_pos2"<<endl;
 			}
         }
-        else
+        if (go_to_pos2)
         {
             ROS_INFO("****************************************");
             //goal_pose = pos2;
@@ -139,6 +143,10 @@ int main(int argc, char **argv)
 
 				cout<<"Yes! The robot has moved to the goal_pos2"<<endl;
 				cout<<"Mission Complete!"<<endl;
+				std_msgs::String msg;
+				msg.data = "arrive_at_pos2";
+				nav_pub.publish(msg);
+				cout << "Start to grasp object" << endl;
 			}
         }
         ros::spinOnce();

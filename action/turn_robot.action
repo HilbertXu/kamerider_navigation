@@ -1,5 +1,5 @@
 # Define the goal
-float32 goal_angle  # Specify which dishwasher we want to use
+float32 goal_angle 
 ---
 # Define the result
 float32 final_angle
