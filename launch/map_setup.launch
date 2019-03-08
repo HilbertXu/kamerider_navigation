@@ -1,0 +1,29 @@
+<!-- 建图launch文件 -->
+<launch>
+    <!--
+        唤起turtlebot
+    -->
+    <include file="$(find turtlebot_bringup)/launch/minimal.launch" /> 
+    
+    <!-- 
+        设置Gmapping包如下
+    -->
+    <!-- 设置摄像头参数 -->
+    <include file="$(find turtlebot_bringup)/launch/3dsensor.launch">
+        <arg name="rgb_processing" value="false" />
+        <arg name="depth_registration" value="false" />
+        <arg name="depth_processing" value="false" />
+        <arg name="scan_topic" value="/scan" />
+    </include>
+
+    <!-- 使能gmapping -->
+    <include file="$(find turtlebot_navigation)/launch/includes/gmapping/gmapping.launch.xml" />
+    
+    <!-- 使能move_base -->
+    <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml" />
+
+    <!-- 开启rviz -->
+    <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+
+    
+</launch>
