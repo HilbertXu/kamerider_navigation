@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -175,6 +176,8 @@ add_dependencies(navigation_demo ${kamerider_navigation_EXPORTED_TARGETS})
 add_executable(get_pose src/get_pose.cpp)
 target_link_libraries(get_pose ${catkin_LIBRARIES})
 add_dependencies(get_pose ${kamerider_navigation_EXPORTED_TARGETS})
+
+
 
 
 #############
