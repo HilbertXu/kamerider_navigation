@@ -36,21 +36,21 @@ ros::Publisher nav_pub;
 
 void initpose()
 {
-    pos1.position.x = 0.540956;
-    pos1.position.y = -0.548329;
+    pos1.position.x = 2.6771;
+    pos1.position.y = -0.55025;
     pos1.position.z = 0;
     pos1.orientation.x = 0;
     pos1.orientation.y = 0;
-    pos1.orientation.z = -0.0611887;
-    pos1.orientation.w = 0.998126;
+    pos1.orientation.z = 0.00716835;
+    pos1.orientation.w = 0.999974;
     
-    pos2.position.x = 0.947594;
-    pos2.position.y = -3.44213;
+    pos2.position.x = 0.935774;
+    pos2.position.y = -2.69883;
     pos2.position.z = 0;
     pos2.orientation.x = 0;
     pos2.orientation.y = 0;
-    pos2.orientation.z = 0.99419;
-    pos2.orientation.w = 0.107641;
+    pos2.orientation.z = -0.999653;
+    pos2.orientation.w = 0.02633;
 }
 
 /*
@@ -105,6 +105,7 @@ int main(int argc, char **argv)
 				cout<<"Waiting for the server..."<<endl;
 			}
 			mc_.sendGoal(naviGoal);
+			cout << "Goal sent!" << endl;
 			mc_.waitForResult(ros::Duration(40.0));
 
 			//导航反馈直至到达目标点      
@@ -116,11 +117,10 @@ int main(int argc, char **argv)
 				flag.data = "arrive_at_pos1";
 				nav_pub.publish(flag);
 				go_to_pos1 = false;
-				go_to_pos2 = true;
 				cout<<"I will go to the goal_pos2"<<endl;
 			}
         }
-        if (go_to_pos2)
+        if(go_to_pos2)
         {
             ROS_INFO("****************************************");
             //goal_pose = pos2;
@@ -143,10 +143,9 @@ int main(int argc, char **argv)
 
 				cout<<"Yes! The robot has moved to the goal_pos2"<<endl;
 				cout<<"Mission Complete!"<<endl;
-				std_msgs::String msg;
-				msg.data = "arrive_at_pos2";
-				nav_pub.publish(msg);
-				cout << "Start to grasp object" << endl;
+				std_msgs::String flag;
+				flag.data = "arrive_at_pos2";
+				nav_pub.publish(flag);
 			}
         }
         ros::spinOnce();

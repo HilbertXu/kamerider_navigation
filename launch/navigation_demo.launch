@@ -1,19 +1,7 @@
 <!--这是获取位置的launch文件-->
 <launch>
-  <!-- 唤醒turtlebot -->
-  <include file="$(find turtlebot_bringup)/launch/minimal.launch" />
-
-  <!-- 设置摄像头参数 -->
-  <include file="$(find turtlebot_bringup)/launch/3dsensor.launch">
-    <arg name="rgb_processing" value="false" />
-    <arg name="depth_registration" value="false" />
-    <arg name="depth_processing" value="false" />
-    <arg name="scan_topic" value="/scan" />
-    <arg name="camera" value="camera" />
-  </include>
-
   <!-- 加载地图 -->
-  <arg name="map_file" default="$(find navigation)/maps/314.yaml" /> 
+  <arg name="map_file" default="$(find kamerider_navigation)/maps/arm.yaml" /> 
   <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
     
   <!-- 设置amcl-->

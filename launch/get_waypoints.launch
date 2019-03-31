@@ -13,7 +13,7 @@
   </include>
 
   <!-- 加载地图 -->
-  <arg name="map_file" default="/home/nvidia/catkin_ws/src/navigation/maps/314.yaml" /> 
+  <arg name="map_file" default="$(find kamerider_navigation)/maps/314.yaml" /> 
   <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
     
   <!-- 设置amcl-->

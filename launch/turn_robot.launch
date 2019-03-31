@@ -8,9 +8,9 @@
  
     </include>
     <group ns="client">
-        <node name="turn_robot_client" pkg="navigation" type="turn_robot_client"/>
+        <node name="turn_robot_client" pkg="kamerider_navigation" type="turn_robot_client"/>
     </group>
     <group ns="server">
-        <node name="turn_robot_server" pkg="navigation" type="turn_robot_server"/>
+        <node name="turn_robot_server" pkg="kamerider_navigation" type="turn_robot_server"/>
     </group>
 </launch>
