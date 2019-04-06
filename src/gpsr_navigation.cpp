@@ -356,8 +356,8 @@ public:
         // Set params
         start_navigating = false;
 
-        nh.param<std::string>("sub_speech_control_topic_name", sub_speech_control_topic_name, "/speech_to_nav");
-        nh.param<std::string>("pub_nav_result_topic_name",     pub_nav_result_topic_name,     "/nav_to_speech");
+        nh.param<std::string>("sub_speech_control_topic_name", sub_speech_control_topic_name, "/control_to_nav");
+        nh.param<std::string>("pub_nav_result_topic_name",     pub_nav_result_topic_name,     "/nav_to_control");
 
         nav_pub    = nh.advertise<std_msgs::String>(pub_nav_result_topic_name, 1);
         speech_sub = nh.subscribe(sub_speech_control_topic_name, 1, &gpsr_navigation::speechCallback, this);
