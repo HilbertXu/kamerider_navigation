@@ -109,7 +109,7 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
+#  INCLUDE_DIRS include
   LIBRARIES navigation
   CATKIN_DEPENDS actionlib actionlib_msgs geometry_msgs message_generation move_base_msgs roscpp rospy std_msgs
   DEPENDS system_lib
@@ -175,6 +175,10 @@ add_dependencies(navigation_demo ${kamerider_navigation_EXPORTED_TARGETS})
 add_executable(get_pose src/get_pose.cpp)
 target_link_libraries(get_pose ${catkin_LIBRARIES})
 add_dependencies(get_pose ${kamerider_navigation_EXPORTED_TARGETS})
+
+#add_executable(test_str src/test_str.cpp)
+#target_link_libraries(test_str ${catkin_LIBRARIES})
+#add_dependencies(test_str ${kamerider_navigation_EXPORTED_TARGETS})
 
 
 #############
