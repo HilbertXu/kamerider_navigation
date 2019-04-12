@@ -62,7 +62,7 @@ int main(int argc, char** argv)
     }
 
     //load the data into the position file
-    ofstream posefile("/home/nvidia/catkin_ws/src/kamerider_navigation/waypoints.txt",ios::out);  
+    ofstream posefile("/home/nvidia/src/kamerider_navigation/waypoints.txt",ios::out);  
     if(!posefile){  
         cerr<<"Cannot open waypoints.txt please check the file path"<<endl;  
         system("pause");
@@ -80,7 +80,7 @@ int main(int argc, char** argv)
                 << pose[i].pose.orientation.x << ","
                 << pose[i].pose.orientation.y << ","
                 << pose[i].pose.orientation.z << ","
-                << pose[i].pose.orientation.w <<endl;
+                << pose[i].pose.orientation.w;
         sstream >> line;
         posefile << line << endl;
     }

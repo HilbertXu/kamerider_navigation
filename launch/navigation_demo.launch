@@ -1,7 +1,7 @@
 <!--这是获取位置的launch文件-->
 <launch>
   <!-- 加载地图 -->
-  <arg name="map_file" default="$(find kamerider_navigation)/maps/arm.yaml" /> 
+  <arg name="map_file" default="$(find kamerider_navigation)/maps/20190410.yaml" /> 
   <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
     
   <!-- 设置amcl-->
@@ -26,4 +26,5 @@
       <!-- 速度平滑 
     <include file="$(turtlebot_teleop)/launch/keyboard_teleop.launch" /> 
 	-->  
+  <node pkg="kamerider_navigation" type="gpsr_navigation" name="gpsr_navigation" />
 </launch>
