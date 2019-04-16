@@ -63,8 +63,8 @@ class OutAndBack():
         # goal_angle = pi
         #Set the required position for arm to grasp
         self.required_pos = Point()
-        self.required_pos.x = 0.35
-        self.required_pos.y  = -0.01
+        self.required_pos.x = 0.3456
+        self.required_pos.y  = 0.01619
 
         # Initialize the tf listener
         self.tf_listener = tf.TransformListener()
